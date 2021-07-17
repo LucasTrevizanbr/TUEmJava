@@ -26,13 +26,13 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Before
 	public void setUp() {
 	
-		/* ========== Montagem do cenário ========== */
+		/* ========== GIVEN/DADO QUE ========== */
 		
-		// criando alguns clientes
+		//tenho clientes
 		Cliente cliente01 = new Cliente(idCLiente01, "Gustavo Farias", 31, "gugafarias@gmail.com", 1, true);
 		Cliente cliente02 = new Cliente(idCLiente02, "Felipe Augusto", 34, "felipeaugusto@gmail.com", 1, true);
 		
-		// inserindo os clientes criados na lista de clientes do banco
+		//eles estão na lista
 		List<Cliente> clientesDoBanco = new ArrayList<>();
 		clientesDoBanco.add(cliente01);
 		clientesDoBanco.add(cliente02);
@@ -71,10 +71,10 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testPesquisaClienteInexistente() {
 
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		Cliente cliente = gerClientes.pesquisaCliente(1001);
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertNull(cliente);
 		
 	}
@@ -88,10 +88,10 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testRemoveCliente() {
 		
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean clienteRemovido = gerClientes.removeCliente(idCLiente02);
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertThat(clienteRemovido, is(true));
 		assertThat(gerClientes.getClientesDoBanco().size(), is(1));
 		assertNull(gerClientes.pesquisaCliente(idCLiente02));
@@ -108,10 +108,10 @@ public class GerenciadoraClientesTest_Ex10 {
 	public void testRemoveClienteInexistente() {
 
 	
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean clienteRemovido = gerClientes.removeCliente(1001);
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertThat(clienteRemovido, is(false));
 		assertThat(gerClientes.getClientesDoBanco().size(), is(2));
 		
@@ -127,13 +127,13 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testClienteIdadeAceitavel() throws IdadeNaoPermitidaException {
 
-		/* ========== Montagem do Cenário ========== */		
+		/* ========== GIVEN/DADO QUE ========== */		
 		Cliente cliente = new Cliente(1, "Gustavo", 25, "guga@gmail.com", 1, true);
 		
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertTrue(idadeValida);	
 	}
 	
@@ -147,13 +147,13 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testClienteIdadeAceitavel_02() throws IdadeNaoPermitidaException {
 
-		/* ========== Montagem do Cenário ========== */		
+		/* ========== GIVEN/DADO QUE ========== */		
 		Cliente cliente = new Cliente(1, "Gustavo", 18, "guga@gmail.com", 1, true);
 		
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertTrue(idadeValida);	
 	}
 	
@@ -167,13 +167,13 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testClienteIdadeAceitavel_03() throws IdadeNaoPermitidaException {
 
-		/* ========== Montagem do Cenário ========== */		
+		/* ========== GIVEN/DADO QUE ========== */		
 		Cliente cliente = new Cliente(1, "Gustavo", 65, "guga@gmail.com", 1, true);
 		
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO  ========== */
 		boolean idadeValida = gerClientes.validaIdade(cliente.getIdade());
 		
-		/* ========== Verificações ========== */
+		/* ========== THEN/ENTÃO ========== */
 		assertTrue(idadeValida);	
 	}
 	
@@ -187,15 +187,15 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testClienteIdadeAceitavel_04() throws IdadeNaoPermitidaException {
 
-		/* ========== Montagem do Cenário ========== */		
+		/* ========== GIVEN/DADO QUE ========== */		
 		Cliente cliente = new Cliente(1, "Gustavo", 17, "guga@gmail.com", 1, true);
 
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO  ========== */
 		try {
 			gerClientes.validaIdade(cliente.getIdade());
 			fail();
 		} catch (Exception e) {
-			/* ========== Verificações ========== */
+			/* ========== THEN/ENTÃO ========== */
 			assertThat(e.getMessage(), is(IdadeNaoPermitidaException.MSG_IDADE_INVALIDA));
 		}	
 	}
@@ -210,14 +210,14 @@ public class GerenciadoraClientesTest_Ex10 {
 	@Test
 	public void testClienteIdadeAceitavel_05() throws IdadeNaoPermitidaException {
 		
-		/* ========== Montagem do Cenário ========== */		
+		/* ========== GIVEN/DADO QUE ========== */		
 		Cliente cliente = new Cliente(1, "Gustavo", 66, "guga@gmail.com", 1, true);
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		try {
 			gerClientes.validaIdade(cliente.getIdade());
 			fail();
 		} catch (Exception e) {
-			/* ========== Verificações ========== */
+			/* ========== THEN/ENTÃO ========== */
 			assertThat(e.getMessage(), is(IdadeNaoPermitidaException.MSG_IDADE_INVALIDA));
 		}	
 	}

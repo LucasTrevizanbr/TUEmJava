@@ -32,22 +32,22 @@ public class GerenciadoraContasTest_Ex6 {
 	@Test
 	public void testTransfereValor() {
 
-		/* ========== Montagem do cenário ========== */
+		/* ========== GIVEN/DADO QUE========== */
 		
-		// criando alguns clientes
+		//Eu tenho contas existentes
 		int idConta01 = 1;
 		int idConta02 = 2;
 		ContaCorrente conta01 = new ContaCorrente(idConta01, 200, true);
 		ContaCorrente conta02 = new ContaCorrente(idConta02, 0, true);
 		
-		// inserindo os clientes criados na lista de clientes do banco
+		//Elas estão na lista do banco
 		List<ContaCorrente> contasDoBanco = new ArrayList<>();
 		contasDoBanco.add(conta01);
 		contasDoBanco.add(conta02);
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 100, idConta02);
 		
 		/* ========== Verificações ========== */
@@ -66,22 +66,20 @@ public class GerenciadoraContasTest_Ex6 {
 	@Test
 	public void testTransfereValor_SaldoInsuficiente() {
 
-		/* ========== Montagem do cenário ========== */
+		/* ========== GIVEN/DADO QUE ========== */
 		
-		// criando alguns clientes
 		int idConta01 = 1;
 		int idConta02 = 2;
 		ContaCorrente conta01 = new ContaCorrente(idConta01, 100, true);
 		ContaCorrente conta02 = new ContaCorrente(idConta02, 0, true);
 		
-		// inserindo os clientes criados na lista de clientes do banco
 		List<ContaCorrente> contasDoBanco = new ArrayList<>();
 		contasDoBanco.add(conta01);
 		contasDoBanco.add(conta02);
 		
 		gerContas = new GerenciadoraContas(contasDoBanco);
 
-		/* ========== Execução ========== */
+		/* ========== WHEN/QUANDO ========== */
 		boolean sucesso = gerContas.transfereValor(idConta01, 200, idConta02);
 		
 		/* ========== Verificações ========== */
